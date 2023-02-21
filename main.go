@@ -20,6 +20,7 @@ func main() {
 	r := bufio.NewReader(f)
 	addrs := make(map[netip.Addr]bool)
 	prefixs := make(map[netip.Prefix]bool)
+	imports := make(map[string]bool)
 NextLine:
 	for {
 		line, err := r.ReadString('\n')
@@ -27,6 +28,10 @@ NextLine:
 			break
 		}
 		line = strings.TrimSpace(line)
+		if strings.HasPrefix(line, "import") {
+			imports[line] = true
+			continue
+		}
 		if prefix, err := netip.ParsePrefix(line); err == nil {
 			prefixs[prefix] = true
 			continue
@@ -39,6 +44,7 @@ NextLine:
 			}
 			addrs[addr] = true
 		}
+
 	}
 	sortedAddrs := Keys(addrs)
 	sort.Slice(sortedAddrs, func(i, j int) bool {
@@ -49,12 +55,16 @@ NextLine:
 		return sortedPrefixs[i].Addr().Less(sortedPrefixs[j].Addr())
 	})
 	b := new(bytes.Buffer)
+	for _, imp := range Keys(imports) {
+		fmt.Fprintln(b, imp)
+	}
 	for _, prefix := range sortedPrefixs {
 		fmt.Fprintln(b, prefix)
 	}
 	for _, addr := range sortedAddrs {
 		fmt.Fprintln(b, addr)
 	}
+
 	err = os.WriteFile("bad.txt", b.Bytes(), 0644)
 	if err != nil {
 		log.Fatal(err)
