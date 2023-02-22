@@ -1,8 +1,11 @@
 import https://blackip.ustc.edu.cn/list.php?txt
 import https://raw.iqiq.io/njcx/blackip_list/master/firehol_level1.netset
 import https://raw.iqiq.io/stamparm/ipsum/master/ipsum.txt
+111.7.100.20/30
+111.7.100.24/30
 111.225.152.0/23
 112.66.246.0/24
+116.179.37.0/24
 119.41.192.0/20
 1.0.170.50
 1.1.220.63

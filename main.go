@@ -55,7 +55,9 @@ NextLine:
 		return sortedPrefixs[i].Addr().Less(sortedPrefixs[j].Addr())
 	})
 	b := new(bytes.Buffer)
-	for _, imp := range Keys(imports) {
+	importslice := Keys(imports)
+	sort.Strings(importslice)
+	for _, imp := range importslice {
 		fmt.Fprintln(b, imp)
 	}
 	for _, prefix := range sortedPrefixs {
