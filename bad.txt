@@ -1,6 +1,6 @@
 import https://blackip.ustc.edu.cn/list.php?txt
-import https://raw.iqiq.io/njcx/blackip_list/master/firehol_level1.netset
-import https://raw.iqiq.io/stamparm/ipsum/master/ipsum.txt
+import https://raw.githubusercontent.com/njcx/blackip_list/master/firehol_level1.netset
+import https://raw.githubusercontent.com/stamparm/ipsum/master/ipsum.txt
 111.7.100.20/30
 111.7.100.24/30
 111.225.152.0/23
